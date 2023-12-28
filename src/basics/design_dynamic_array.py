@@ -52,7 +52,7 @@ class DynamicArray:
         if check_array_empty(self._array):
             raise IndexError("The array is empty.")
 
-        return self._array[-1]
+        return self._array.pop()
 
     def resize(self) -> None:
         self._capacity = 2 * self._capacity
