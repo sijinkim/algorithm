@@ -17,13 +17,13 @@ mypy = "^1.8.0"
 pylint = "^3.0.3"
 pytest = "^7.4.3"
 pytest-cov = "^4.1.0"
+pydantic = "^2.5.3"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poe.tasks]
-web = "python serving/main.py web run"
 
   [tool.poe.tasks.format-isort]
   help = "Run isort on the code base"
@@ -48,16 +48,16 @@ web = "python serving/main.py web run"
 
   [tool.poe.tasks.test]
   help = "Run unit and feature tests"
-  cmd  = "pytest --cov=serving tests/"
+  cmd  = "pytest --cov=algorithm tests/"
   envfile = ".env.test"
 
   [tool.poe.tasks.types]
   help = "Run the type checker"
-  cmd  = "mypy serving --ignore-missing-imports"
+  cmd  = "mypy algorithm --ignore-missing-imports"
 
   [tool.poe.tasks.lint]
   help = "Run the linter"
-  cmd  = "pylint serving"
+  cmd  = "pylint algorithm"
 
   [tool.poe.tasks.style-black]
   help = "Validate black code style"
