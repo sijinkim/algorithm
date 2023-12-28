@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "algorithm"
+name = "src"
 version = "0.1.0"
 description = ""
 authors = ["sijinkim <tlwlsdi0306@gmail.com>"]
@@ -48,16 +48,16 @@ build-backend = "poetry.core.masonry.api"
 
   [tool.poe.tasks.test]
   help = "Run unit and feature tests"
-  cmd  = "pytest --cov=algorithm tests/"
+  cmd  = "pytest --cov=src tests/"
   envfile = ".env.test"
 
   [tool.poe.tasks.types]
   help = "Run the type checker"
-  cmd  = "mypy algorithm --ignore-missing-imports"
+  cmd  = "mypy src --ignore-missing-imports"
 
   [tool.poe.tasks.lint]
   help = "Run the linter"
-  cmd  = "pylint algorithm"
+  cmd  = "pylint src"
 
   [tool.poe.tasks.style-black]
   help = "Validate black code style"
@@ -102,4 +102,4 @@ incremental = false
 plugins = ["pydantic.mypy"]
 
 [tool.pylint.'MESSAGES CONTROL']
-disable = ["R0903"]
+disable = ["R0903", "C0116", "C0115", "C0114"]
