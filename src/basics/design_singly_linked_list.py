@@ -3,80 +3,86 @@
 
 Design Singly Linked List https://neetcode.io/problems/singlyLinkedList
 """
-from dataclasses import dataclass
+from typing import Union
 
 
-@dataclass
-class Node:
-    dist_from_head: int
-    value: int
-    dist_from_tail: int
+class ListNode:
+    def __init__(self, value: int, next_node: Union["ListNode", None] = None):
+        self._value = value
+        self._next = next_node
+
+    @property
+    def value(self) -> int:
+        return self._value
+
+    @value.setter
+    def value(self, val: int) -> None:
+        self._value = val
+
+    @property
+    def next(self) -> Union["ListNode", None]:
+        return self._next
+
+    @next.setter
+    def next(self, next_node: Union["ListNode", None]) -> None:
+        self._next = next_node
 
 
 class LinkedList:
     def __init__(self) -> None:
-        self._nodes: list[Node] = []
-        self._number_of_nodes: int = 0
+        self.head = ListNode(value=-1)
+        self.tail = self.head
 
     def get(self, index: int) -> int:
         if index < 0:
             raise ValueError("Index must be greater than or equal to 0.")
 
-        if index >= self._number_of_nodes:
-            return -1
-
-        for n in self._nodes:
-            if n.dist_from_head == index:
-                return n.value
+        curr = self.head.next
+        i = 0
+        while curr:
+            if i == index:
+                return curr.value
+            curr = curr.next
+            i += 1
+        # index 도달하기 전 None(tail.next) 만난 경우
         return -1
 
     def insert_head(self, val: int) -> None:
-        for n in self._nodes:
-            n.dist_from_head += 1
-
-        new_head = Node(
-            dist_from_head=0, value=val, dist_from_tail=self._number_of_nodes
-        )
-
-        self._nodes.append(new_head)
-        self._number_of_nodes += 1
+        new_node = ListNode(value=val)
+        new_node.next = self.head.next
+        self.head.next = new_node
+        if not new_node.next:
+            # dummy node 제외, 최초 node일 경우
+            self.tail = new_node
 
     def insert_trail(self, val: int) -> None:
-        for n in self._nodes:
-            n.dist_from_tail += 1
-
-        new_tail = Node(
-            dist_from_head=self._number_of_nodes, value=val, dist_from_tail=0
-        )
-
-        self._nodes.append(new_tail)
-        self._number_of_nodes += 1
+        self.tail.next = ListNode(value=val)
+        self.tail = self.tail.next
 
     def remove(self, index: int) -> bool:
         if index < 0:
             raise ValueError("Index must be greater than or equal to 0.")
 
-        if index >= self._number_of_nodes:
-            return False
+        curr = self.head.next
 
-        curr_nodes = self._nodes.copy()
-        for n in curr_nodes:
-            if n.dist_from_head < index:
-                n.dist_from_tail -= 1
+        # curr을 index 직전 노드로 위치
+        i = 0
+        while curr and i < index - 1:
+            curr = curr.next
+            i += 1
 
-            elif n.dist_from_head > index:
-                n.dist_from_head -= 1
-
-            else:
-                self._nodes.remove(n)
-                self._number_of_nodes -= 1
-
-        return True
+        if curr and curr.next:
+            if curr.next == self.tail:
+                self.tail = curr
+            curr.next = curr.next.next
+            return True
+        return False
 
     def get_values(self) -> list[int]:
-        values: list[int] = [0 for i in range(self._number_of_nodes)]
+        curr = self.head.next
+        results = []
 
-        for n in self._nodes:
-            values[n.dist_from_head] = n.value
-
-        return values
+        while curr:
+            results.append(curr.value)
+            curr = curr.next
+        return results

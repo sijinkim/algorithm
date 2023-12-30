@@ -1,6 +1,6 @@
 import pytest
 
-from src.basics import LinkedList, Node
+from src.basics import LinkedList
 
 
 @pytest.fixture
