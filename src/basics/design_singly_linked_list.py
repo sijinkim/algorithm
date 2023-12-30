@@ -63,14 +63,15 @@ class LinkedList:
         if index < 0:
             raise ValueError("Index must be greater than or equal to 0.")
 
-        curr = self.head.next
+        curr: ListNode | None = self.head
 
         # curr을 index 직전 노드로 위치
         i = 0
-        while curr and i < index - 1:
+        while curr and i < index:
             curr = curr.next
             i += 1
 
+        # out of bounds index 방지를 위해 curr.next 유무도 점검
         if curr and curr.next:
             if curr.next == self.tail:
                 self.tail = curr
