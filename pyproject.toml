@@ -18,6 +18,7 @@ pylint = "^3.0.3"
 pytest = "^7.4.3"
 pytest-cov = "^4.1.0"
 pydantic = "^2.5.3"
+pylint-pydantic = "^0.3.2"
 
 [build-system]
 requires = ["poetry-core"]
@@ -103,3 +104,6 @@ plugins = ["pydantic.mypy"]
 
 [tool.pylint.'MESSAGES CONTROL']
 disable = ["R0903", "C0116", "C0115", "C0114"]
+
+[tool.pylint.MASTER]
+load-plugins = "pylint_pydantic"
