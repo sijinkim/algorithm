@@ -104,9 +104,19 @@ class TwoSumSolution(BaseModel):
             while len(result) == 0:
                 pivot_idx = len(search_pool) // 2
 
+                # 더이상 left가 없을 때
                 if pivot_idx == 0:
                     if search_pool[pivot_idx].value == search_target:
                         result = [idx, search_idx + pivot_idx]
+                    else:
+                        break
+
+                # 더이상 right가 없을 때
+                if pivot_idx == len(search_pool) - 1:
+                    if search_pool[pivot_idx].value == search_target:
+                        result = [idx, search_idx + pivot_idx]
+                    elif search_pool[pivot_idx - 1].value == search_target:
+                        result = [idx, search_idx + pivot_idx -1]
                     else:
                         break
 

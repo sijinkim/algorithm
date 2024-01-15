@@ -71,3 +71,16 @@ def test_merge_sort():
     for n in merge_sort(nums):
         result.append(n.value)
     assert result == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
+def test_can_get_correct_answer_faster_2():
+    nums = [3, 2, 3]
+    target = 6
+
+    assert TwoSumSolution(nums=nums, target=target).two_sum_with_sort() == [0, 2]
+
+def test_can_get_correct_answer_faster_3():
+    nums = [2, 5, 5, 11]
+    target = 10
+
+    assert TwoSumSolution(nums=nums, target=target).two_sum_with_sort() == [1, 2]
