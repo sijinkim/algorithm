@@ -116,7 +116,7 @@ class TwoSumSolution(BaseModel):
                     if search_pool[pivot_idx].value == search_target:
                         result = [idx, search_idx + pivot_idx]
                     elif search_pool[pivot_idx - 1].value == search_target:
-                        result = [idx, search_idx + pivot_idx -1]
+                        result = [idx, search_idx + pivot_idx - 1]
                     else:
                         break
 
@@ -132,3 +132,15 @@ class TwoSumSolution(BaseModel):
                 break
 
         return [sorted_list[result[0]].idx, sorted_list[result[1]].idx]
+
+    @timer
+    def two_sum_faster_and_simpler(self) -> list[int]:
+        num_idx_dict: dict[int, int] = {}
+        result: list[int] = []
+        for idx, n in enumerate(self.nums):
+            if self.target - n in num_idx_dict:
+                result = [num_idx_dict[self.target - n], idx]
+                break
+            num_idx_dict[n] = idx
+
+        return result

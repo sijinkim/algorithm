@@ -79,8 +79,29 @@ def test_can_get_correct_answer_faster_2():
 
     assert TwoSumSolution(nums=nums, target=target).two_sum_with_sort() == [0, 2]
 
+
 def test_can_get_correct_answer_faster_3():
     nums = [2, 5, 5, 11]
     target = 10
 
     assert TwoSumSolution(nums=nums, target=target).two_sum_with_sort() == [1, 2]
+
+
+def test_can_get_correct_answer_faster_and_simpler():
+    nums = [3, 2, 3]
+    target = 6
+
+    assert TwoSumSolution(nums=nums, target=target).two_sum_faster_and_simpler() == [
+        0,
+        2,
+    ]
+
+
+def test_can_get_correct_answer_faster_and_simpler_2():
+    nums = [2, 5, 5, 11]
+    target = 10
+
+    assert TwoSumSolution(nums=nums, target=target).two_sum_faster_and_simpler() == [
+        1,
+        2,
+    ]
