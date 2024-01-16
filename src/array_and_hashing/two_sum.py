@@ -136,11 +136,14 @@ class TwoSumSolution(BaseModel):
     @timer
     def two_sum_faster_and_simpler(self) -> list[int]:
         num_idx_dict: dict[int, int] = {}
-        result: list[int] = []
+
         for idx, n in enumerate(self.nums):
             if self.target - n in num_idx_dict:
-                result = [num_idx_dict[self.target - n], idx]
-                break
+                return [num_idx_dict[self.target - n], idx]
+
             num_idx_dict[n] = idx
 
-        return result
+        raise NoSolutionException("There's no solution!")
+
+class NoSolutionException(Exception):
+    ...
