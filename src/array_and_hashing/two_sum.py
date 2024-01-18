@@ -145,5 +145,6 @@ class TwoSumSolution(BaseModel):
 
         raise NoSolutionException("There's no solution!")
 
+
 class NoSolutionException(Exception):
     ...
