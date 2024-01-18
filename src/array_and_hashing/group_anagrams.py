@@ -4,19 +4,19 @@
 49.Group Anagrams (https://leetcode.com/problems/group-anagrams)
 """
 from pydantic import BaseModel
-from collections import Counter
+
 
 class GroupAnagramsSolution(BaseModel):
     strs: list[str]
 
     def group_anagrams(self) -> list[list[str]]:
-        check_pool: dict[Counter, list[str]] = {}
+        check_pool: dict[tuple[set[str], int], list[str]] = {}
 
         for s in self.strs:
-            s_set = Counter(s)
-            if s_set not in check_pool:
-                check_pool[s_set] = [s]
+            s_key = (set(s), len(s))
+            if s_key not in check_pool:
+                check_pool[s_key] = [s]
             else:
-                check_pool[s_set].append(s)
-        
+                check_pool[s_key].append(s)
+
         return [v for _,v in check_pool]
