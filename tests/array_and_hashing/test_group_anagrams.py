@@ -35,7 +35,7 @@ def test_can_check_duplicate_elements():
     )
 
 
-def test_can_check_sample_set():
+def test_can_check_same_length_strs():
     inputs = ["dddg", "gggd"]
 
     assert sorted(GroupAnagramsSolution(strs=inputs).group_anagrams()) == sorted(
