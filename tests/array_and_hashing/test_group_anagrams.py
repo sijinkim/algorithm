@@ -3,12 +3,13 @@ from src.array_and_hashing import GroupAnagramsSolution
 
 def test_can_check_group_anagrams():
     inputs = ["eat", "tea", "tan", "ate", "nat", "bat"]
-
-    assert GroupAnagramsSolution(strs=inputs).group_anagrams() == [
-        ["bat"],
-        ["nat", "tan"],
-        ["ate", "eat", "tea"],
-    ]
+    assert sorted(GroupAnagramsSolution(strs=inputs).group_anagrams()) == sorted(
+        [
+            ["bat"],
+            ["nat", "tan"],
+            ["ate", "eat", "tea"],
+        ]
+    )
 
 
 def test_can_check_empty_lists():
@@ -26,4 +27,17 @@ def test_can_check_single_element():
 def test_can_check_duplicate_elements():
     inputs = ["eat", "tea", "tan", "tea", "ant"]
 
-    assert GroupAnagramsSolution(strs=inputs).group_anagrams() == [["eat", "tea", "tea"], ["tan", "ant"]]
+    assert sorted(GroupAnagramsSolution(strs=inputs).group_anagrams()) == sorted(
+        [
+            ["eat", "tea", "tea"],
+            ["ant", "tan"],
+        ]
+    )
+
+
+def test_can_check_sample_set():
+    inputs = ["dddg", "gggd"]
+
+    assert sorted(GroupAnagramsSolution(strs=inputs).group_anagrams()) == sorted(
+        [["dddg"], ["gggd"]]
+    )
