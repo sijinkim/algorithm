@@ -41,7 +41,7 @@ class GroupAnagramsSolution(BaseModel):
         return [sorted(v) for _, v in check_pool.items()]
 
     @timer
-    def group_anagrams(self) -> list[list[str]]:
+    def group_anagrams_runtime_fail(self) -> list[list[str]]:
         """
         hashable 이슈는 해결했으나, O(n*n) 으로 Runtime 초과 에러 발생
             - 어떻게 하면 hash 'key' 수준에서 anagram 여부를 판별할 수 있을까?
@@ -70,15 +70,15 @@ class GroupAnagramsSolution(BaseModel):
 
         return result
 
-    # @timer
-    # def group_anagrams_tmp(self) -> list[list[str]]:
-    #     """
-    #     0. 어떻게 하면 anagram이라 판단할 수 있는가?(사용된 알파벳 종류가 같고, 그 개수가 동일하다 => Counter OK)
-    #     1. Counter()는 hashable 하지 않다.
-    #     2. 어떻게 하면 Counter()를 hashable하게 바꿀 수 있는가?
-    #         - 어떤 게 hashable한 것인가?
-    #         - hashable 하게 가져가야하는 구분값이 무엇인가?
-    #     3. key-value 활용하되, hashable한 자료구조로 변경하기
-    #         - set unhashable: ('a':1, 'e':1, 't':1)  => string 이라면?
-    #     """
-    #     ...
+    @timer
+    def group_anagrams(self) -> list[list[str]]:
+        """
+        0. 어떻게 하면 anagram이라 판단할 수 있는가?(사용된 알파벳 종류가 같고, 그 개수가 동일하다 => Counter OK)
+        1. Counter()는 hashable 하지 않다.
+        2. 어떻게 하면 Counter()를 hashable하게 바꿀 수 있는가?
+            - 어떤 게 hashable한 것인가?
+            - hashable 하게 가져가야하는 구분값이 무엇인가?
+        3. key-value 활용하되, hashable한 자료구조로 변경하기
+            - set unhashable: ('a':1, 'e':1, 't':1)  => string 이라면?
+        """
+        ...
