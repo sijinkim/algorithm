@@ -81,4 +81,18 @@ class GroupAnagramsSolution(BaseModel):
         3. key-value 활용하되, hashable한 자료구조로 변경하기
             - set unhashable: ('a':1, 'e':1, 't':1)  => string 이라면?
         """
-        ...
+        # strs 한번 순회하면서 hashing 만들기 - Counter를 hashable하게: O(N) * O(NlogN)
+        counter_dict: dict[str: str] = {}
+        for s in self.strs:
+            counter: Counter[str] = Counter(s)
+            # python 3.7 이후로, Counter는 insertion order 기억. 때문에 keys() 순서 order 반영됨, order 미반영 필요 => O(NlogN)
+            counter_key: str = str(list(sorted(counter.items(), key=lambda x:x)))
+
+            if counter_key not in counter_dict:
+                counter_dict[counter_key] = []
+            
+            counter_dict[counter_key] += [s]
+
+        # counter_dict의 values 리스트로 출력
+        return list(counter_dict.values())
+
