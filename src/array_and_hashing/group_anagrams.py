@@ -131,7 +131,7 @@ class GroupAnagramsSolution(BaseModel):
         O(M) x O(NlogN)
         0.0228ms
         """
-        anagram_dict: dict[str, list[str]] = defaultdict(list) # O(1)
+        anagram_dict: dict[str, list[str]] = defaultdict(list)  # O(1)
         for s in self.strs:  # O(M)
             _key: str = "".join(sorted(s))  # O(NlogN)
             anagram_dict[_key] += [s]
