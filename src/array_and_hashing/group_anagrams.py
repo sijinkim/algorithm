@@ -127,7 +127,11 @@ class GroupAnagramsSolution(BaseModel):
 
     @timer
     def group_anagrams_with_defaultdict(self) -> list[list[str]]:
-        anagram_dict: dict[str, list[str]] = defaultdict(list)
+        """
+        O(M) x O(NlogN)
+        0.0228ms
+        """
+        anagram_dict: dict[str, list[str]] = defaultdict(list) # O(1)
         for s in self.strs:  # O(M)
             _key: str = "".join(sorted(s))  # O(NlogN)
             anagram_dict[_key] += [s]
