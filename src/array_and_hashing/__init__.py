@@ -1,5 +1,6 @@
 from .contains_duplicate import ContainsDuplicateSolution
 from .group_anagrams import GroupAnagramsSolution
+from .top_k_frequent_elements import TopKFrequentElementsSolution
 from .two_sum import Num, TwoSumSolution, merge_sort
 from .valid_anagram import ValidAnagramSolution
 
@@ -10,4 +11,5 @@ __all__ = [
     "merge_sort",
     "Num",
     "GroupAnagramsSolution",
+    "TopKFrequentElementsSolution",
 ]
