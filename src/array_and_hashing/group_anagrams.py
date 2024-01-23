@@ -71,7 +71,7 @@ class GroupAnagramsSolution(BaseModel):
         return result
 
     @timer
-    def group_anagrams(self) -> list[list[str]]:
+    def group_anagrams_with_counter(self) -> list[list[str]]:
         """
         0. 어떻게 하면 anagram이라 판단할 수 있는가?(사용된 알파벳 종류가 같고, 그 개수가 동일하다 => Counter OK)
         1. Counter()는 hashable 하지 않다.
@@ -80,19 +80,47 @@ class GroupAnagramsSolution(BaseModel):
             - hashable 하게 가져가야하는 구분값이 무엇인가?
         3. key-value 활용하되, hashable한 자료구조로 변경하기
             - set unhashable: ('a':1, 'e':1, 't':1)  => string 이라면?
+
+        O(M) x O(N) x O(NlogN)
+        0.1396ms
         """
-        # strs 한번 순회하면서 hashing 만들기 - Counter를 hashable하게: O(N) * O(NlogN)
-        counter_dict: dict[str: str] = {}
-        for s in self.strs:
-            counter: Counter[str] = Counter(s)
-            # python 3.7 이후로, Counter는 insertion order 기억. 때문에 keys() 순서 order 반영됨, order 미반영 필요 => O(NlogN)
-            counter_key: str = str(list(sorted(counter.items(), key=lambda x:x)))
+        # strs 한번 순회하면서 hashing 만들기(Counter를 anagram 판별 key로) - Counter를 hashable하게
+        counter_dict: dict[str, list[str]] = {}
+        for s in self.strs:  # O(M)
+            counter: Counter[str] = Counter(s)  # O(N)
+            # python 3.7 이후로, Counter는 insertion order 기억.
+            # 때문에 keys() 순서 order 반영됨, order 미반영 필요 => O(NlogN)
+            counter_key: str = str(
+                list(sorted(counter.items(), key=lambda x: x))
+            )  # O(NlogN)
 
             if counter_key not in counter_dict:
                 counter_dict[counter_key] = []
-            
+
             counter_dict[counter_key] += [s]
 
         # counter_dict의 values 리스트로 출력
         return list(counter_dict.values())
 
+    @timer
+    def group_anagrams(self) -> list[list[str]]:
+        """
+        0. Counter는 counter.items()를 sorting 하는 과정 추가가 필요하다.
+           Counter 사용하지 않고, self.str 한번만 순회하면서 key 만드는 방법
+        1. self.strs 순회하면서 주어진 str M개 접근 => O(M)
+        2. str sorting(str 길이 N), 이를 anagram hash의 key로 사용 => O(NlogN)
+        3. anagram hash에 str sorting한 값이 있는지 체크 후, value 추가 => O(1), O(1)
+
+        O(M) x O(NlogN)
+        0.0235ms
+        """
+        anagram_dict: dict[str, list[str]] = {}
+        for s in self.strs:  # O(M)
+            _key: str = "".join(sorted(s))  # O(NlogN)
+
+            if _key not in anagram_dict:
+                anagram_dict[_key] = []
+
+            anagram_dict[_key] += [s]
+
+        return list(anagram_dict.values())
