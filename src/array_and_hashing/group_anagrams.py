@@ -3,7 +3,7 @@
 
 49.Group Anagrams (https://leetcode.com/problems/group-anagrams)
 """
-from collections import Counter
+from collections import Counter, defaultdict
 
 from pydantic import BaseModel
 
@@ -121,6 +121,15 @@ class GroupAnagramsSolution(BaseModel):
             if _key not in anagram_dict:
                 anagram_dict[_key] = []
 
+            anagram_dict[_key] += [s]
+
+        return list(anagram_dict.values())
+
+    @timer
+    def group_anagrams_with_defaultdict(self) -> list[list[str]]:
+        anagram_dict: dict[str, list[str]] = defaultdict(list)
+        for s in self.strs:  # O(M)
+            _key: str = "".join(sorted(s))  # O(NlogN)
             anagram_dict[_key] += [s]
 
         return list(anagram_dict.values())
