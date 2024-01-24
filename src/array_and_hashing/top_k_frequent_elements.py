@@ -6,7 +6,9 @@
 from collections import Counter
 
 from pydantic import BaseModel
+
 from src.utils import timer
+
 
 class TopKFrequentElementsSolution(BaseModel):
     nums: list[int]
@@ -36,23 +38,20 @@ class TopKFrequentElementsSolution(BaseModel):
         O(N)
         0.0321
         """
-        counter: dict[int,int] = {}
+        counter: dict[int, int] = {}
         bucket: list[list[int]] = [[] for x in range(len(self.nums) + 1)]
 
-        for n in self.nums: # O(N)
+        for n in self.nums:  # O(N)
             counter[n] = 1 + counter.get(n, 0)
-        
-        for n,c in counter.items(): # O(N)
+
+        for n, c in counter.items():  # O(N)
             bucket[c].append(n)
-        
+
         result: list[int] = []
         count = len(self.nums)
-        while len(result) < self.k: # O(K)
+        while len(result) < self.k:  # O(K)
             if bucket[count]:
                 result += bucket[count]
             count -= 1
-        
-        return result
-            
 
-        
+        return result

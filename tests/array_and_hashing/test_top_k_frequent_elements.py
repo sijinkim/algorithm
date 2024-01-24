@@ -11,5 +11,8 @@ def input_nums():
 def test_can_check_counter(input_nums):
     assert TopKFrequentElementsSolution(nums=input_nums, k=2).top_k_frequent() == [1, 2]
 
+
 def test_can_check_counter_with_bucket_sort(input_nums):
-    assert TopKFrequentElementsSolution(nums=input_nums, k=2).top_k_frequent_with_bucket_sort() == [1, 2]
+    assert TopKFrequentElementsSolution(
+        nums=input_nums, k=2
+    ).top_k_frequent_with_bucket_sort() == [1, 2]
