@@ -4,6 +4,7 @@ from .product_of_array_except_self import ProductOfArrayExceptSelfSolution
 from .top_k_frequent_elements import TopKFrequentElementsSolution
 from .two_sum import Num, TwoSumSolution, merge_sort
 from .valid_anagram import ValidAnagramSolution
+from .valid_sudoku import ValidSudokuSolution
 
 __all__ = [
     "ContainsDuplicateSolution",
@@ -14,4 +15,5 @@ __all__ = [
     "GroupAnagramsSolution",
     "TopKFrequentElementsSolution",
     "ProductOfArrayExceptSelfSolution",
+    "ValidSudokuSolution",
 ]
