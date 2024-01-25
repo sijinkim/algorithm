@@ -34,3 +34,8 @@ def boards() -> list[list[list[str]]]:
 def test_is_valid_board(boards):
     assert ValidSudokuSolution(board=boards[0]).is_valid_sudoku() == True
     assert ValidSudokuSolution(board=boards[1]).is_valid_sudoku() == False
+
+
+def test_is_valid_board_using_set(boards):
+    assert ValidSudokuSolution(board=boards[0]).is_valid_sudoku_using_set() == True
+    assert ValidSudokuSolution(board=boards[1]).is_valid_sudoku_using_set() == False
