@@ -47,3 +47,44 @@ class LongestConsecutiveSequenceSolution(BaseModel):
             max_length = max(max_length, curr_length)
 
         return max_length
+
+    @timer
+    def longest_consecutive_try(self) -> int:
+        """
+        0. O(N*N) 으로 푸는 방법. -> i가 단순히 카운트 업하는 연산이어도 O(N*N) 소요.
+        1. nums hash 생성: hash key로 nums values 담음
+        2. nums keys 순회하면서
+            2.1 현재 key + i 값이 keys에 있는지 확인 (i < len(keys)) # 현재 key보다 큰 consecutive sequence
+            2.2 현재 key - i 값이 keys에 있는지 확인 (i < len(keys)) # 현재 key보다 작은 consecutive sequence
+
+        O(N^2)
+        0.0371ms
+        """
+        if len(self.nums) == 0:
+            return 0
+
+        nums_dict: dict[int, int] = {}
+        for n in self.nums:
+            nums_dict[n] = 1  # consecutive sequence self count
+
+        nums_keys = list(nums_dict.keys())
+        curr_length: int = 0
+        for n in nums_keys:  # bigger sequence
+            for i in range(1, len(nums_keys)):
+                if n + i in nums_dict:
+                    curr_length += 1
+                else:
+                    break
+            nums_dict[n] += curr_length
+            curr_length = 0
+
+        for n in nums_keys:  # smaller sequence
+            for i in range(1, len(nums_keys)):
+                if n - i in nums_dict:
+                    curr_length += 1
+                else:
+                    break
+            nums_dict[n] += curr_length
+            curr_length = 0
+
+        return max(nums_dict.values())

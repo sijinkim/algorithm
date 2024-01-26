@@ -16,24 +16,52 @@ def nums():
 
 
 def test_can_check_consecutive_sequence(nums):
+    assert (
+        LongestConsecutiveSequenceSolution(nums=nums[0]).longest_consecutive_try() == 4
+    )
     assert LongestConsecutiveSequenceSolution(nums=nums[0]).longest_consecutive() == 4
 
 
 def test_can_check_no_sequence(nums):
+    assert (
+        LongestConsecutiveSequenceSolution(nums=nums[1]).longest_consecutive_try() == 1
+    )
     assert LongestConsecutiveSequenceSolution(nums=nums[1]).longest_consecutive() == 1
 
 
 def test_can_check_duplicate_sequence(nums):
+    assert (
+        LongestConsecutiveSequenceSolution(nums=nums[2]).longest_consecutive_try() == 5
+    )
     assert LongestConsecutiveSequenceSolution(nums=nums[2]).longest_consecutive() == 5
 
 
 def test_can_check_empty_nums(nums):
+    assert (
+        LongestConsecutiveSequenceSolution(nums=nums[3]).longest_consecutive_try() == 0
+    )
     assert LongestConsecutiveSequenceSolution(nums=nums[3]).longest_consecutive() == 0
 
 
 def test_can_restart_counting(nums):
+    assert (
+        LongestConsecutiveSequenceSolution(nums=nums[4]).longest_consecutive_try() == 7
+    )
     assert LongestConsecutiveSequenceSolution(nums=nums[4]).longest_consecutive() == 7
 
 
 def test_can_check_single_element(nums):
+    assert (
+        LongestConsecutiveSequenceSolution(nums=nums[5]).longest_consecutive_try() == 1
+    )
     assert LongestConsecutiveSequenceSolution(nums=nums[5]).longest_consecutive() == 1
+
+
+def test_check_runtime_base(nums):
+    assert (
+        LongestConsecutiveSequenceSolution(nums=nums[0]).longest_consecutive_try() == 4
+    )
+
+
+def test_check_runtime(nums):
+    assert LongestConsecutiveSequenceSolution(nums=nums[0]).longest_consecutive() == 4
