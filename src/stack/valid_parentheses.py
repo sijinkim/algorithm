@@ -5,15 +5,19 @@
 """
 from pydantic import BaseModel
 
+from src.utils import timer
+
 
 class ValidParenthesesSolution(BaseModel):
     s: str
 
+    @timer
     def is_valid(self) -> bool:
         """
         0. s 순회하면서 괄호 타입별로, open/close 쌍 맞는지 체크
 
         O(N)
+        0.0056ms
         """
         if not len(self.s) % 2 == 0:
             return False
@@ -23,6 +27,9 @@ class ValidParenthesesSolution(BaseModel):
         for item in self.s:
             if item in "([{":
                 result.append(item)
+
+            if item in "}])" and len(result) == 0:
+                return False
 
             if item in "}])" and len(result) > 0:
                 if item == "}" and result[-1] == "{":
