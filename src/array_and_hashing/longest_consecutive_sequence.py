@@ -102,9 +102,9 @@ class LongestConsecutiveSequenceSolution(BaseModel):
             hash 한번 순회하면서, bigger/smaller 모두 조회할 수 없는가?
 
         문제점: pivot value에 +1, -1이 아닌 +i, -i 할 경우 => consecutive 하지 않아도
-              set 안에 있을 수 있다. e.g. set: {1,2,3,-1,-2}pivot 1, i loop 돌면서, pivot - i < 0 되고, 
-              set 에 -1,-2 등이 있었을 경우 consecutive count에 포함됨    
-        
+              set 안에 있을 수 있다. e.g. set: {1,2,3,-1,-2}pivot 1, i loop 돌면서, pivot - i < 0 되고,
+              set 에 -1,-2 등이 있었을 경우 consecutive count에 포함됨
+
         0.0309ms
         """
         len_nums = len(self.nums)
