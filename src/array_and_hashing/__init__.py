@@ -1,5 +1,6 @@
 from .contains_duplicate import ContainsDuplicateSolution
 from .group_anagrams import GroupAnagramsSolution
+from .longest_consecutive_sequence import LongestConsecutiveSequenceSolution
 from .product_of_array_except_self import ProductOfArrayExceptSelfSolution
 from .top_k_frequent_elements import TopKFrequentElementsSolution
 from .two_sum import Num, TwoSumSolution, merge_sort
@@ -16,4 +17,5 @@ __all__ = [
     "TopKFrequentElementsSolution",
     "ProductOfArrayExceptSelfSolution",
     "ValidSudokuSolution",
+    "LongestConsecutiveSequenceSolution",
 ]
