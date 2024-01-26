@@ -94,7 +94,7 @@ def test_check_runtime_try(nums):
 def test_check_runtime_develop(nums):
     assert (
         LongestConsecutiveSequenceSolution(
-            nums=[9, 1, -3, 2, 4, 8, 3, -1, 6, -2, -4, 7]
+            nums=nums[0]
         ).longest_consecutive_develop()
         == 4
     )
