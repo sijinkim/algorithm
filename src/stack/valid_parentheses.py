@@ -78,3 +78,26 @@ class ValidParenthesesSolution(BaseModel):
                 stack.pop()  # open된 쌍이 맞는 경우
 
         return len(stack) == 0
+
+    @timer
+    def is_valid_solution(self) -> bool:
+        """
+        if - pass 처리 개선
+
+        O(N)
+        0.0045ms
+        """
+        stack: list[str] = []
+        pairs: dict[str, str] = {
+            "(": ")",
+            "[": "]",
+            "{": "}",
+        }
+
+        for item in self.s:
+            if item in pairs:
+                stack.append(item)
+            elif len(stack) == 0 or item != pairs[stack.pop()]:
+                return False
+
+        return len(stack) == 0

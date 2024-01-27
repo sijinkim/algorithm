@@ -36,3 +36,18 @@ def test_can_check_not_opened_with_stack(inputs):
 def test_can_check_not_closed_with_stack(inputs):
     assert ValidParenthesesSolution(s=inputs[4]).is_valid_with_stack() == False
     assert ValidParenthesesSolution(s=inputs[5]).is_valid_with_stack() == False
+
+
+def test_can_check_valid_solution(inputs):
+    assert ValidParenthesesSolution(s=inputs[0]).is_valid_solution() == True
+    assert ValidParenthesesSolution(s=inputs[1]).is_valid_solution() == True
+
+
+def test_can_check_not_opened_solution(inputs):
+    assert ValidParenthesesSolution(s=inputs[2]).is_valid_solution() == False
+    assert ValidParenthesesSolution(s=inputs[3]).is_valid_solution() == False
+
+
+def test_can_check_not_closed_solution(inputs):
+    assert ValidParenthesesSolution(s=inputs[4]).is_valid_solution() == False
+    assert ValidParenthesesSolution(s=inputs[5]).is_valid_solution() == False
