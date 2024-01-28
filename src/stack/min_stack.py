@@ -12,6 +12,8 @@ class MinStack(BaseModel):
     min_value: int = Field(default=0)
 
     def push(self, val: int) -> None:
+        if len(self.stack) == 0:
+            self.min_value = val
         self.min_value = min(val, self.min_value)
         self.stack.append({val: self.min_value})
 

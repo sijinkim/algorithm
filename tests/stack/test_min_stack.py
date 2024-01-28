@@ -16,12 +16,12 @@ def init_stack() -> MinStack:
 
 def test_can_push(init_stack):
     init_stack.push(5)
-    assert init_stack.stack == [{2: 0}, {0: 0}, {3: 0}, {0: 0}, {5: 0}]
+    assert init_stack.stack == [{2: 2}, {0: 0}, {3: 0}, {0: 0}, {5: 0}]
 
 
 def test_can_pop(init_stack):
     init_stack.pop()
-    assert init_stack.stack == [{2: 0}, {0: 0}, {3: 0}]
+    assert init_stack.stack == [{2: 2}, {0: 0}, {3: 0}]
 
 
 def test_can_top(init_stack):
