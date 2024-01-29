@@ -5,10 +5,11 @@
 (https://leetcode.com/problems/evaluate-reverse-polish-notation)
 """
 import math
+
 from src.utils import timer
 
-class EvaluateReversePolishNotationSolution:
 
+class EvaluateReversePolishNotationSolution:
     @timer
     def eval_rpn(self, tokens: list[str]) -> int:
         """
