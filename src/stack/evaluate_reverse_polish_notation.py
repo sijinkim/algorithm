@@ -5,13 +5,18 @@
 (https://leetcode.com/problems/evaluate-reverse-polish-notation)
 """
 import math
-
+from src.utils import timer
 
 class EvaluateReversePolishNotationSolution:
+
+    @timer
     def eval_rpn(self, tokens: list[str]) -> int:
         """
         stack 활용, operator 만날 때까지 push 하다가, operator 만나면 int pop(), pop().
         계산 결과 push().
+
+        O(N)
+        0.0250ms
         """
         operator = "+-*/"
 
