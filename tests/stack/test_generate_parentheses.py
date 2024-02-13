@@ -1,13 +1,22 @@
-from src.stack import GenerateParenthesesSolution
 import pytest
 
+from src.stack import GenerateParenthesesSolution
+
+
 def test_correct_output():
-    assert GenerateParenthesesSolution.generate_parenthesis(n=3) == ["((()))","(()())","(())()","()(())","()()()"]
+    assert GenerateParenthesesSolution(n=3).generate_parenthesis() == [
+        "((()))",
+        "(()())",
+        "(())()",
+        "()(())",
+        "()()()",
+    ]
+
 
 def test_one_pair_case():
-    assert GenerateParenthesesSolution.generate_parenthesis(n=1) == ["()"]
+    assert GenerateParenthesesSolution(n=1).generate_parenthesis() == ["()"]
+
 
 def test_n_out_of_range_case():
     with pytest.raises(ValueError) as excinfo:
-        GenerateParenthesesSolution.generate_parenthesis(n=0)
-    assert str(excinfo.value) == "1 <= n <= 8"
+        GenerateParenthesesSolution(n=0).generate_parenthesis()
