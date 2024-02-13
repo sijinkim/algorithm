@@ -22,9 +22,9 @@ class GenerateParenthesesSolution(BaseModel):
     @timer
     def generate_parenthesis(self) -> list[str]:
         """
-            BFS
-            
-            0.1195ms
+        BFS
+
+        0.1195ms
         """
         check_list: list[str] = ["("]
         while len(check_list) > 0 and len(check_list[0]) < 2 * self.n:
@@ -40,15 +40,16 @@ class GenerateParenthesesSolution(BaseModel):
     @timer
     def generate_parenthesis_dfs(self) -> list[str]:
         """
-            DFS
+        DFS
 
-            0.0360ms
+        0.0360ms
         """
         result: list[str] = []
 
         def dfs(open_par: int, close_par: int, combination: str) -> None:
             if open_par == self.n and close_par == self.n:
                 result.append(combination)
+                return
 
             if open_par < self.n:
                 dfs(open_par + 1, close_par, combination + "(")
