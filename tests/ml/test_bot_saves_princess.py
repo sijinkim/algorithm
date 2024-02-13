@@ -1,6 +1,6 @@
 import pytest
 
-from src.hackerrank import display_path_to_princess
+from src.ml import display_path_to_princess
 
 
 @pytest.fixture
