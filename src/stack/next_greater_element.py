@@ -23,19 +23,21 @@ class NextGreaterElementSolution:
         O(M + N)
         """
         # Create a dictionary to store the next greater element of each number in nums2
-        next_greater = {}
+        next_greater: dict[int, int] = {}
         # Create a stack to keep track of the elements whose next greater element is not found yet
-        stack = []
-        
+        stack: list[int] = []
+
         # Loop through each element in nums2
         for num in nums2:
-            # While the stack is not empty and the current number is greater than the top element in the stack
+            # While the stack is not empty and
+            # the current number is greater than the top element in the stack
             while stack and num > stack[-1]:
-                # Pop the top element from the stack and set its next greater element to the current number
+                # Pop the top element from the stack and
+                # set its next greater element to the current number
                 next_greater[stack.pop()] = num
             # Add the current number to the stack
             stack.append(num)
-        
+
         # Create a list to store the next greater element of each number in nums1
         result = []
         # Loop through each element in nums1
@@ -47,6 +49,5 @@ class NextGreaterElementSolution:
             else:
                 # Otherwise, append -1 to the result list
                 result.append(-1)
-        
-        return result
 
+        return result
