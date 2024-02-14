@@ -18,7 +18,9 @@ class NextGreaterElementSolution:
 
         nums2 element에서 각 value 별로 greater 값 찾기 필요(nums1과 상관없이)
         1. nums2 순회하면서 각 value 별 greater 값 hashmap 생성 => O(N)
-        2. nums1 순회하면서 1의 hashmap에서 greater 값 조회. 없으면 -1
+        2. nums1 순회하면서 1의 hashmap에서 greater 값 조회. 없으면 -1 => O(M)
+
+        O(M + N)
         """
         # Create a dictionary to store the next greater element of each number in nums2
         next_greater = {}
