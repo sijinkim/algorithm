@@ -7,6 +7,12 @@ import sys
 
 
 def range_sum_query_solution() -> None:
+    """
+    1. nums 입력 순회하면서 prefix sum list 만들기 -> O(N)
+    2. query 순회하면서 prefix sum list에서 누적합 계산하기 -> O(M)
+
+    O(N) + O(M)
+    """
     _input = sys.stdin.readline
 
     n, m = map(int, _input().split())
