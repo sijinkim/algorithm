@@ -49,13 +49,16 @@ class DailyTemperaturesSolution:
 
         for idx, num in enumerate(temperatures):
             while waiting_stack and num > waiting_stack[-1][0]:
-                greater_hash[str(waiting_stack.pop())] = (num, idx)  # curr_temp: (greater_value, idx)
+                greater_hash[str(waiting_stack.pop())] = (
+                    num,
+                    idx,
+                )  # curr_temp: (greater_value, idx)
 
             waiting_stack.append((num, idx))
 
         for idx, num in enumerate(temperatures):
             if str((num, idx)) in greater_hash:
-                result.append(greater_hash.pop(str((num,idx)))[1] - idx)
+                result.append(greater_hash.pop(str((num, idx)))[1] - idx)
 
             else:
                 result.append(0)
@@ -77,7 +80,7 @@ class DailyTemperaturesSolution:
         for idx, num in enumerate(temperatures):
             while waiting_stack and num > waiting_stack[-1][0]:
                 result[waiting_stack.pop()[1]] = idx - waiting_stack[-1][1]
-            
+
             waiting_stack.append((num, idx))
 
         return result
