@@ -73,7 +73,7 @@ def firefly_time_solution() -> None:
     min_value = n
     count = 0
 
-    for idx in range(1, h):
+    for idx in range(1, h+1):
         walls = bottom[idx] + top[h - idx + 1]
         if min_value == walls:
             count += 1
