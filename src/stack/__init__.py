@@ -1,3 +1,4 @@
+from .car_fleet import CarFleetSolution
 from .daily_temperatures import DailyTemperaturesSolution
 from .evaluate_reverse_polish_notation import EvaluateReversePolishNotationSolution
 from .generate_parentheses import GenerateParenthesesSolution
@@ -12,4 +13,5 @@ __all__ = [
     "GenerateParenthesesSolution",
     "DailyTemperaturesSolution",
     "NextGreaterElementSolution",
+    "CarFleetSolution",
 ]
