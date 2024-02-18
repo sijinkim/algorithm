@@ -12,3 +12,12 @@ def test_can_get_correct_answer():
 
 def test_can_get_correct_answer_with_single_car():
     assert CarFleetSolution(target=10, position=[3], speed=[3]).solution() == 1
+
+
+def test_can_get_correct_answer_when_reach_seperatly():
+    assert (
+        CarFleetSolution(
+            target=10, position=[8, 3, 7, 4, 6, 5], speed=[4, 4, 4, 4, 4, 4]
+        ).solution()
+        == 6
+    )
