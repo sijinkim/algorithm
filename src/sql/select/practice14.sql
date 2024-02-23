@@ -10,17 +10,6 @@
 -- WHERE parent_ITEM_ID.RARITY = 'RARE' => 기준 아이템이 'RARE'인 경우의 row만 테이블에 남김
 -- 해당 테이블에서 기준 아이템의 업그레이드 아이템, 즉 child item 정보 select.
 
-SELECT
-    tree.ITEM_ID AS ITEM_ID,
-    child_item.ITEM_NAME AS ITEM_NAME,
-    child_item.RARITY AS RARITY
-FROM ITEM_TREE AS tree
-LEFT JOIN ITEM_INFO AS parent_item
-    ON tree.PARENT_ITEM_ID = parent_item.ITEM_ID
-LEFT JOIN ITEM_INFO AS child_item
-    ON tree.ITEM_ID = child_item.ITEM_ID
-WHERE parent_item.RARITY = 'RARE'
-ORDER BY ITEM_ID DESC
 
 
 SELECT
@@ -36,4 +25,17 @@ LEFT JOIN ITEM_INFO as child_info
     ON tree.ITEM_ID = child_info.ITEM_ID
 WHERE PARENT_ITEM_ID IS NOT NULL
     AND parent_info.RARITY = "RARE"
+ORDER BY ITEM_ID DESC
+
+
+SELECT
+    tree.ITEM_ID AS ITEM_ID,
+    child_item.ITEM_NAME AS ITEM_NAME,
+    child_item.RARITY AS RARITY
+FROM ITEM_TREE AS tree
+JOIN ITEM_INFO AS parent_item
+    ON tree.PARENT_ITEM_ID = parent_item.ITEM_ID
+    AND parent_item.RARITY = 'RARE'
+JOIN ITEM_INFO AS child_item
+    ON tree.ITEM_ID = child_item.ITEM_ID
 ORDER BY ITEM_ID DESC
