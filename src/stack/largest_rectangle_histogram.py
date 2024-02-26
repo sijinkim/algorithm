@@ -106,7 +106,7 @@ class LargestRectangleHistogram:
         return max(area)
 
     @timer
-    def solution(self, heights: list[int]) -> int:
+    def solution_time_limit2(self, heights: list[int]) -> int:
         """
         height.max 부터 pivot value 하나씩 카운트 다운 ( 0 < pivot <= height.max)
         1. pivot_value i 에 대하여
@@ -146,5 +146,34 @@ class LargestRectangleHistogram:
 
             h -= 1
             thresh = result / len(heights)
+
+        return result
+
+    @timer
+    def solution(self, heights: list[int]) -> int:
+        """
+        O(N) 풀이법
+
+        heights[i] 별로, left smaller/right smaller 가 결국 heichts[i]를 h로 하는 블록의 최대 width
+        1. heights 순회하면서 => O(N)
+        2. 현재 heights가 최근 heights 보다 작니?
+            2.1 작으면, area 계산
+                2.1.1 현재 heights보다 큰 heights들에 대해 area 계산
+                2.1.2 현재 heights와 같거나 작으면, width 이어질 수 있으므로 stop
+        3. width stack에 push
+        """
+        result: int = 0
+        width_stack: list[int] = [-1]
+
+        heights.append(0)  # width_stack[-1], 무조건 0으로 세팅
+        max_width: int = len(heights)
+        for i in range(max_width):
+            while (
+                heights[i] < heights[width_stack[-1]]
+            ):  # block이 끊기는 순간(smallest height를 만남)
+                height = heights[width_stack.pop()]
+                width = i - width_stack[-1] - 1  # width_stack[-1]: 계산하려는 block 앞 index
+                result = max(result, height * width)
+            width_stack.append(i)
 
         return result
