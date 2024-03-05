@@ -22,7 +22,7 @@ class BinarySearchSolution:
         max_idx: int = len(nums) - 1
         pivot: int = max_idx // 2
 
-        while min_idx < max_idx:
+        while min_idx <= max_idx:
             if nums[pivot] > target:
                 max_idx = pivot - 1
 
@@ -33,8 +33,4 @@ class BinarySearchSolution:
                 return pivot
 
             pivot = (max_idx - min_idx) // 2 + min_idx
-
-        if nums[min_idx] == target:
-            return min_idx
-
         return -1
