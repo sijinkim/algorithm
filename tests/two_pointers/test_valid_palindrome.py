@@ -14,3 +14,10 @@ def test_can_check_non_palindrome():
 
 def test_can_check_empty():
     assert ValidPalindromeSolution().is_palindrome(s=" ") == True
+
+
+def test_can_check_palindrome_fast():
+    assert (
+        ValidPalindromeSolution().is_palindrome_fast(s="A man, a plan, a canal: Panama")
+        == True
+    )
