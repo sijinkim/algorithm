@@ -14,3 +14,13 @@ def test_can_get_empty():
 
 def test_can_get_zeros():
     assert ThreeSumSolution().solution(nums=[0, 0, 0]) == [[0, 0, 0]]
+
+def test_can_get_correct_answer_faster():
+    assert ThreeSumSolution().solution_faster(nums=[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, 1]) == [
+        [-1, 0, 1]
+    ]
+
+def test_can_get_correct_answer_time_compare():
+    assert ThreeSumSolution().solution(nums=[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, 1]) == [
+        [-1, 0, 1]
+    ]
