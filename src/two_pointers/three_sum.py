@@ -16,8 +16,8 @@ class ThreeSumSolution:
         3 <= nums.length <= 3000
         -100_000 <= nums[i] <= 100_000
 
-        O(NlogN + N*N): 
-        결국 최소로 two sum 조합찾는 방법 O(N). 
+        O(NlogN + N*N):
+        결국 최소로 two sum 조합찾는 방법 O(N).
         O(N)을 target N에 대하여 계산 필요.
 
         target N에 대하여 반복 수행되는 조합 서치과정을 줄이기
