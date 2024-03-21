@@ -12,3 +12,7 @@ def test_can_get_correct_answer():
 
 def test_can_get_correct_answer_with_edge_case():
     assert TrappingRainWaterSolution().solution(height=[4, 2, 3]) == 1
+
+
+def test_can_get_correct_answer_using_recurssion():
+    assert TrappingRainWaterSolution().recursive_solution(height=[4, 2, 3]) == 1

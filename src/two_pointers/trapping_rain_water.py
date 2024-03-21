@@ -7,6 +7,7 @@ from collections import deque
 from src.utils import timer
 
 
+# pylint: disable=C0200
 class TrappingRainWaterSolution:
     @timer
     def wrong_solution(self, height: list[int]) -> int:
@@ -101,3 +102,29 @@ class TrappingRainWaterSolution:
             if min(leftmax[i], rightmax[i]) - height_dq[i] > 0:
                 result += min(leftmax[i], rightmax[i]) - height_dq[i]
         return result
+
+    @timer
+    def recursive_solution(self, height: list[int]) -> int:
+        result = 0
+
+        for i in range(len(height)): # TODO: recurssion을 더 효율적으로 활용하는 방법 찾기
+            water_units = (
+                min(find_left_max(i, height), find_right_max(i, height)) - height[i]
+            )
+            if water_units > 0:
+                result += water_units
+        return result
+
+
+def find_left_max(index: int, height: list[int]) -> int:
+    if index < 1:
+        return 0
+
+    return max(height[index - 1], find_left_max(index - 1, height))
+
+
+def find_right_max(index: int, height: list[int]) -> int:
+    if index > len(height) - 2:
+        return 0
+
+    return max(height[index + 1], find_right_max(index + 1, height))
